@@ -1,10 +1,25 @@
 <script lang="ts">
+	import { get } from 'svelte/store';
+	import { cartItems, addToCart, removeFromCart } from '../cart';
+
 	export let product: Product = {
 		id: '',
 		name: '',
 		price: 0
 	};
-	console.log(product);
+
+	let cart = get(cartItems);
+	let cartItemIndex = cart.findIndex((item) => {
+		return item.id === product.id;
+	});
+	let cartProduct = cart[cartItemIndex];
+	cartItems.subscribe((newCartValue) => {
+		cart = newCartValue;
+		cartItemIndex = cart.findIndex((item) => {
+			return item.id === product.id;
+		});
+		cartProduct = cart[cartItemIndex];
+	});
 </script>
 
 <div class="card">
