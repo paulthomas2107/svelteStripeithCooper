@@ -19,6 +19,7 @@
 			return item.id === product.id;
 		});
 		cartProduct = cart[cartItemIndex];
+		console.log(cart);
 	});
 </script>
 
