@@ -26,12 +26,18 @@
 	<header class="card-header">
 		<h2>{product.name}</h2>
 	</header>
-	<div class="card-body px-4">
-		Quantity: <strong>4</strong>
-	</div>
+	{#if cartProduct != undefined}
+		<div class="card-body px-4">
+			Quantity: <strong>{cartProduct.quantity}</strong>
+		</div>
+	{/if}
 	<div class="card-body px-4">Price: ${product.price}</div>
 	<footer class="card-footer">
-		<button class="p-2 rounded variant-glass-primary">Add</button>
-		<button class="p-2 rounded variant-glass-error">Remove</button>
+		<button class="p-2 rounded variant-glass-primary" on:click={() => addToCart(product.id)}
+			>Add</button
+		>
+		<button class="p-2 rounded variant-glass-error" on:click={() => removeFromCart(product.id)}
+			>Remove</button
+		>
 	</footer>
 </div>
